@@ -6,123 +6,429 @@
     <title>Võ Văn Hiếu - R&D Hardware & Embedded Engineer Portfolio</title>
     <style>
         :root {
-            --primary-color: #0f172a;
-            --accent-color: #2563eb;
-            --text-color: #334155;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
+            --bg-main: #0b0f19;
+            --bg-card: #151c2c;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-        header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 4rem 2rem; text-align: center; }
-        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #f8fafc; }
-        header h2 { font-size: 1.25rem; color: #94a3b8; font-weight: 400; margin-bottom: 1.5rem; }
-        .contact-info { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.95rem; color: #cbd5e1; }
-        .container { max-width: 1100px; margin: -2rem auto 3rem auto; padding: 0 1.5rem; position: relative; }
-        section { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 2.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color); }
-        section h3 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent-color); display: inline-block; }
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .about-item { background: #f1f5f9; padding: 1.25rem; border-radius: 8px; }
-        .about-item strong { color: var(--primary-color); display: block; margin-bottom: 0.25rem; }
-        .skills-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .chip { background: #eff6ff; color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; border: 1px solid #bfdbfe; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .project-card { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: white; transition: transform 0.2s, box-shadow 0.2s; }
-        .project-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .project-content { padding: 1.5rem; }
-        .project-card h4 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.75rem; }
-        .project-card p { font-size: 0.95rem; color: #475569; margin-bottom: 1rem; }
-        .tag-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .tag { font-size: 0.75rem; background: #f1f5f9; color: #64748b; padding: 0.25rem 0.5rem; border-radius: 4px; }
-        footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem; border-top: 1px solid var(--border-color); background: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        header {
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), transparent 40%),
+                        radial-gradient(circle at top left, rgba(129, 140, 248, 0.15), transparent 40%),
+                        #0b0f19;
+            padding: 4rem 2rem 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem auto;
+            font-size: 2rem;
+            color: #0b0f19;
+            font-weight: bold;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+        }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.4rem;
+        }
+        header h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .contact-item {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        section {
+            margin-bottom: 4rem;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: var(--card-shadow);
+        }
+        .overview-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .overview-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .skills-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: var(--card-shadow);
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .skill-chip {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: #7dd3fc;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+        .project-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #090d16;
+        }
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.06);
+        }
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(11, 15, 25, 0.85);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        .project-body {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .project-body h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+        .project-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: #070a12;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .container { padding: 2rem 1rem; }
+        }
     </style>
 </head>
 <body>
+
     <header>
+        <div class="avatar-placeholder">VH</div>
         <h1>VÕ VĂN HIẾU</h1>
         <h2>Kỹ sư R&D Điện tử Viễn thông</h2>
         <div class="contact-info">
-            <span>📞 0399.478.771</span> | 
-            <span>✉️ vovanhieu2703@gmail.com</span> | 
-            <span>🏢 Công ty CP Intery (215E18 Nguyễn Văn Hưởng, P. An Khánh, TP.HCM)</span>
+            <div class="contact-item">📞 0399.478.771</div>
+            <div class="contact-item">✉️ vovanhieu2703@gmail.com</div>
+            <div class="contact-item">🏢 Công ty CP Intery (An Khánh, TP.HCM)</div>
         </div>
     </header>
+
     <div class="container">
+        
         <section>
-            <h3>Tổng Quan Bản Thân</h3>
-            <div class="about-grid">
-                <div class="about-item">
-                    <strong>Học Vấn</strong>
-                    Tốt nghiệp Cử nhân/Kỹ sư ngành Điện tử Viễn thông - Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE) năm 2023.
+            <h3 class="section-title">Tổng Quan Bản Thân</h3>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h4>Học Vấn</h4>
+                    <p>Tốt nghiệp Cử nhân / Kỹ sư Điện tử Viễn thông – Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE) năm 2023.</p>
                 </div>
-                <div class="about-item">
-                    <strong>Vị Trí Hiện Tại</strong>
-                    Kỹ sư R&D tại Công ty Cổ phần Intery. Chuyên thiết kế phần cứng mạch điện tử và lập trình vi điều khiển ứng dụng thực tế.
+                <div class="overview-card">
+                    <h4>Kinh Nghiệm Hiện Tại</h4>
+                    <p>Kỹ sư R&D tại Công ty Cổ phần Intery. Chuyên nghiên cứu thiết kế mạch nguyên lý, layout PCB và lập trình vi điều khiển nhúng.</p>
                 </div>
             </div>
         </section>
+
         <section>
-            <h3>Kỹ Năng Chuyên Môn</h3>
-            <div class="skills-chips">
-                <span class="chip">Altium Designer (Schematic & PCB Layout)</span>
-                <span class="chip">Thiết kế Nguồn Công suất (SMPS / Inverter / Cầu H)</span>
-                <span class="chip">Vi điều khiển PIC</span>
-                <span class="chip">Vi điều khiển ESP (ESP32/ESP8266)</span>
-                <span class="chip">Ngôn ngữ C cơ bản</span>
-                <span class="chip">Đo lường & Debug phần cứng (Oscilloscope, LCR Meter)</span>
+            <h3 class="section-title">Kỹ Năng Chuyên Môn</h3>
+            <div class="skills-wrapper">
+                <div class="skills-grid">
+                    <div class="skill-chip">Altium Designer (Schematic & PCB Layout)</div>
+                    <div class="skill-chip">Thiết kế Nguồn Công suất (SMPS / Inverter / Cầu H)</div>
+                    <div class="skill-chip">Vi điều khiển Microchip PIC</div>
+                    <div class="skill-chip">Vi điều khiển ESP (ESP32 / ESP8266)</div>
+                    <div class="skill-chip">Lập trình C cơ bản cho hệ thống nhúng</div>
+                    <div class="skill-chip">Đo lường & Debug phần cứng (Oscilloscope / LCR)</div>
+                </div>
             </div>
         </section>
+
         <section>
-            <h3>Dự Án Tiêu Biểu & Thực Tế</h3>
+            <h3 class="section-title">Dự Án Tiêu Biểu & Thực Tế</h3>
             <div class="projects-grid">
+                
+                <!-- Dự án 1: Điện thoại thang máy -->
                 <div class="project-card">
-                    <div class="project-content">
-                        <h4>Bộ Điện Thoại Liên Lạc Khẩn Cấp Thang Máy</h4>
-                        <p>Thiết kế phần cứng và firmware hệ thống intercom gọi khẩn cấp đa điểm, chống nhiễu tốt trong môi trường giếng thang khắc nghiệt.</p>
-                        <div class="tag-group"><span class="tag">Altium Designer</span><span class="tag">PIC Microcontroller</span><span class="tag">Audio Circuit</span></div>
+                    <div class="project-img-wrapper">
+                        <img src="https://drive.google.com/thumbnail?id=16mHMN5KQxH_PqK-lYeTvAXTo1mTGrDaE&sz=w800" alt="Bộ điện thoại thang máy">
+                        <span class="project-badge">Elevator Telecom</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Bộ Điện Thoại Khẩn Cấp Thang Máy</h4>
+                        <p>Thiết kế phần cứng bo mạch thoại liên lạc khẩn cấp cabin thang máy. Tích hợp mạch xử lý âm thanh chống nhiễu chuyên dụng trong giếng thang.</p>
+                        <div class="project-tags">
+                            <span class="tag">Altium Designer</span>
+                            <span class="tag">Intercom</span>
+                            <span class="tag">Audio Circuit</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dự án 2: Bộ cứu hộ thang máy ARD -->
                 <div class="project-card">
-                    <div class="project-content">
+                    <div class="project-img-wrapper">
+                        <img src="https://drive.google.com/thumbnail?id=1Pwp6DEDEsmJStps0u4D87H7B70XYX_hm&sz=w800" alt="Bộ cứu hộ thang máy">
+                        <span class="project-badge">Power Electronics</span>
+                    </div>
+                    <div class="project-body">
                         <h4>Bộ Cứu Hộ Tự Động Thang Máy (ARD)</h4>
-                        <p>Thiết kế mạch nguồn công suất lớn, mạch cầu H điều khiển nghịch lưu, kiểm tra và test công suất tải thực tế đưa cabin về tầng gần nhất khi mất điện lưới.</p>
-                        <div class="tag-group"><span class="tag">Power Electronics</span><span class="tag">H-Bridge</span><span class="tag">Inverter</span></div>
+                        <p>Thiết kế bộ nguồn inverter cứu hộ thang máy khi mất điện. Tích hợp bo mạch công suất, biến áp và các khối bảo vệ dòng/áp an toàn.</p>
+                        <div class="project-tags">
+                            <span class="tag">Power Supply</span>
+                            <span class="tag">ARD System</span>
+                            <span class="tag">PCB Layout</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dự án 3: Mạch cầu H cứu hộ -->
                 <div class="project-card">
-                    <div class="project-content">
-                        <h4>Màn Hình Cảm Ứng & Camera AI Giám Sát Thang Máy</h4>
-                        <p>Phát triển phần cứng giao diện màn hình cảm ứng gọi tầng sang trọng và tích hợp hệ thống nhúng kết hợp AI giám sát an ninh cabin thang máy.</p>
-                        <div class="tag-group"><span class="tag">HMI Touch Panel</span><span class="tag">Embedded Systems</span><span class="tag">AI Integration</span></div>
+                    <div class="project-img-wrapper">
+                        <img src="https://drive.google.com/thumbnail?id=1ArsorzOI4T2M637q-2F7LbLz1bQ300ju&sz=w800" alt="Mạch cầu H cứu hộ">
+                        <span class="project-badge">H-Bridge Circuit</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Mạch Cầu H Khối Công Suất ARD</h4>
+                        <p>Thiết kế và tối ưu bo mạch cầu H công suất cao điều khiển nghịch lưu công suất lớn, bố trí đường mạch PCB dòng cao và tản nhiệt tối ưu.</p>
+                        <div class="project-tags">
+                            <span class="tag">H-Bridge</span>
+                            <span class="tag">MOSFET/IGBT</span>
+                            <span class="tag">High Power</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dự án 4: Test công suất ARD -->
                 <div class="project-card">
-                    <div class="project-content">
-                        <h4>Timer Điều Khiển Thiết Bị Nuôi Tôm Tự Động</h4>
-                        <p>Thiết kế mạch điện tử công nghiệp chống ẩm, chống nhiễu cao, lập trình thời gian thực điều khiển hệ thống quạt nước, máy cho ăn tự động ngoài trời.</p>
-                        <div class="tag-group"><span class="tag">Industrial Design</span><span class="tag">RTC / Timer</span><span class="tag">Embedded C</span></div>
+                    <div class="project-img-wrapper">
+                        <img src="https://drive.google.com/thumbnail?id=1xttHimfXK1LaORDw8P1toIqi1GfBX8H5&sz=w800" alt="Test công suất bộ cứu hộ">
+                        <span class="project-badge">Testing & Debug</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Thử Nghiệm & Test Tải Công Suất ARD</h4>
+                        <p>Đo lường dạng sóng PWM, kiểm thử nhiệt độ linh kiện và đánh giá khả năng chịu tải thực tế của hệ thống cứu hộ thang máy trong môi trường Lab.</p>
+                        <div class="project-tags">
+                            <span class="tag">Oscilloscope</span>
+                            <span class="tag">Power Testing</span>
+                            <span class="tag">Debug</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dự án 5: Camera AI & Touch Panel -->
                 <div class="project-card">
-                    <div class="project-content">
-                        <h4>Mạch Máy Dò Kim Loại Thực Phẩm</h4>
-                        <p>Thiết kế bo mạch xử lý tín hiệu analog yếu, bộ lọc nhiễu tần số cao, giao tiếp vi điều khiển hiển thị thông số kiểm tra tạp chất trên dây chuyền chế biến.</p>
-                        <div class="tag-group"><span class="tag">Analog Frontend</span><span class="tag">Signal Filtering</span><span class="tag">Display Board</span></div>
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Màn hình cảm ứng & Camera AI">
+                        <span class="project-badge">Smart Elevator</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Màn Hình Cảm Ứng & Camera AI Thang Máy</h4>
+                        <p>Thiết kế phần cứng bo mạch điều khiển màn hình cảm ứng gọi tầng HMI sang trọng kết hợp bo nhúng Camera AI giám sát an ninh cabin.</p>
+                        <div class="project-tags">
+                            <span class="tag">HMI Touch</span>
+                            <span class="tag">AI Embedded</span>
+                            <span class="tag">IoT</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dự án 6: Timer nuôi tôm tự động -->
                 <div class="project-card">
-                    <div class="project-content">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Timer điều khiển nuôi tôm">
+                        <span class="project-badge">AgriTech</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Timer Điều Khiển Thiết Bị Nuôi Tôm</h4>
+                        <p>Thiết kế mạch điện tử công nghiệp đóng ngắt thời gian thực (RTC), chịu ẩm tốt, điều khiển tự động quạt nước và máy cho ăn tại các ao tôm.</p>
+                        <div class="project-tags">
+                            <span class="tag">PIC / ESP</span>
+                            <span class="tag">Industrial PCB</span>
+                            <span class="tag">RTC Timer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dự án 7: Máy dò kim loại thực phẩm -->
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Máy dò kim loại thực phẩm">
+                        <span class="project-badge">Food Tech</span>
+                    </div>
+                    <div class="project-body">
+                        <h4>Bo Mạch Máy Dò Kim Loại Thực Phẩm</h4>
+                        <p>Thiết kế bo mạch khuếch đại xử lý tín hiệu analog tần số cao và bo hiển thị điều khiển dòng máy phát hiện tạp chất kim loại trong thực phẩm.</p>
+                        <div class="project-tags">
+                            <span class="tag">Analog Design</span>
+                            <span class="tag">Filter Circuit</span>
+                            <span class="tag">Signal Processing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dự án 8: Bộ điều khiển cổng thông minh -->
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80" alt="Bộ điều khiển cửa cổng thông minh">
+                        <span class="project-badge">Smart Home</span>
+                    </div>
+                    <div class="project-body">
                         <h4>Bộ Điều Khiển Cửa Cổng Thông Minh</h4>
-                        <p>Thiết kế bo mạch chủ tích hợp module không dây (ESP/RF), giải mã lệnh điều khiển từ xa, tích hợp mạch bảo vệ quá dòng/quá áp động cơ cổng tự động.</p>
-                        <div class="tag-group"><span class="tag">ESP Series</span><span class="tag">Wireless Control</span><span class="tag">Motor Protection</span></div>
+                        <p>Phát triển mạch điều khiển động cơ cổng tự động tích hợp sóng RF và Wi-Fi/Bluetooth (ESP), hỗ trợ đóng mở qua ứng dụng điện thoại an toàn.</p>
+                        <div class="project-tags">
+                            <span class="tag">ESP32 / ESP8266</span>
+                            <span class="tag">RF Remote</span>
+                            <span class="tag">Motor Driver</span>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
+
     </div>
+
     <footer>
-        <p>&copy; 2026 Võ Văn Hiếu. All rights reserved. R&D Portfolio - Intery JSC.</p>
+        <p><strong>VÕ VĂN HIẾU</strong> — Kỹ sư R&D Điện tử Viễn thông</p>
+        <p>&copy; 2026 Intery JSC. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
