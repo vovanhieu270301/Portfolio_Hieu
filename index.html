@@ -157,10 +157,28 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            position: relative;
         }
         .project-card:hover {
             transform: translateY(-6px);
             border-color: rgba(56, 189, 248, 0.4);
+        }
+        .project-card::after {
+            content: '🔍 Bấm để xem chi tiết';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover::after {
+            opacity: 1;
         }
         .project-img-wrapper {
             position: relative;
@@ -222,6 +240,101 @@
             padding: 0.3rem 0.7rem;
             border-radius: 6px;
         }
+
+        /* Modal Popup Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: modalSlideUp 0.3s ease;
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover {
+            background: var(--primary);
+            color: #0b0f19;
+        }
+        .modal-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        .modal-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .modal-specs {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+        .modal-specs h5 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+        .modal-specs ul {
+            padding-left: 1.2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .modal-specs li {
+            margin-bottom: 0.3rem;
+        }
+
         footer {
             text-align: center;
             padding: 2.5rem 1.5rem;
@@ -234,6 +347,7 @@
             header h1 { font-size: 2rem; }
             .projects-grid { grid-template-columns: 1fr; }
             .container { padding: 2rem 1rem; }
+            .modal-content { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -284,8 +398,8 @@
             <h3 class="section-title">Dự Án Tiêu Biểu & Thực Tế</h3>
             <div class="projects-grid">
                 
-                <!-- Dự án 1: Điện thoại thang máy -->
-                <div class="project-card">
+                <!-- Dự án 1 -->
+                <div class="project-card" onclick="openModal('Bộ Điện Thoại Khẩn Cấp Thang Máy', 'https://drive.google.com/thumbnail?id=16mHMN5KQxH_PqK-lYeTvAXTo1mTGrDaE&sz=w800', 'Thiết kế phần cứng bo mạch thoại liên lạc khẩn cấp cabin thang máy. Tích hợp mạch xử lý âm thanh chống nhiễu chuyên dụng trong môi trường giếng thang khắc nghiệt, đảm bảo tín hiệu thông suốt 24/7.', ['Sử dụng Altium Designer vẽ mạch nguyên lý và layout 2 lớp chống nhiễu EMC.', 'Lập trình firmware xử lý giao tiếp trên vi điều khiển Microchip PIC.', 'Kiểm tra độ suy hao tín hiệu và lọc nhiễu âm thanh trong thực tế giếng thang.'])">
                     <div class="project-img-wrapper">
                         <img src="https://drive.google.com/thumbnail?id=16mHMN5KQxH_PqK-lYeTvAXTo1mTGrDaE&sz=w800" alt="Bộ điện thoại thang máy">
                         <span class="project-badge">Elevator Telecom</span>
@@ -301,8 +415,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 2: Bộ cứu hộ thang máy ARD -->
-                <div class="project-card">
+                <!-- Dự án 2 -->
+                <div class="project-card" onclick="openModal('Bộ Cứu Hộ Tự Động Thang Máy (ARD)', 'https://drive.google.com/thumbnail?id=1Pwp6DEDEsmJStps0u4D87H7B70XYX_hm&sz=w800', 'Thiết kế bộ nguồn inverter cứu hộ thang máy khi mất điện lưới đột xuất. Hệ thống tự động kích hoạt đưa cabin về tầng gần nhất để mở cửa an toàn cho hành khách.', ['Thiết kế mạch nguồn công suất lớn và khối biến áp ổn định.', 'Tích hợp mạch bảo vệ quá dòng, quá áp và đảo pha thông minh.', 'Tối ưu hóa hiệu suất chuyển đổi nguồn khi chạy bằng ắc quy dự phòng.'])">
                     <div class="project-img-wrapper">
                         <img src="https://drive.google.com/thumbnail?id=1Pwp6DEDEsmJStps0u4D87H7B70XYX_hm&sz=w800" alt="Bộ cứu hộ thang máy">
                         <span class="project-badge">Power Electronics</span>
@@ -318,8 +432,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 3: Mạch cầu H cứu hộ -->
-                <div class="project-card">
+                <!-- Dự án 3 -->
+                <div class="project-card" onclick="openModal('Mạch Cầu H Khối Công Suất ARD', 'https://drive.google.com/thumbnail?id=1ArsorzOI4T2M637q-2F7LbLz1bQ300ju&sz=w800', 'Thiết kế và tối ưu bo mạch cầu H công suất cao điều khiển nghịch lưu, bố trí đường mạch PCB dòng cao và tản nhiệt tối ưu cho hệ thống cứu hộ thang máy.', ['Tính toán bề rộng đường đồng (copper track) chịu dòng điện lớn.', 'Lựa chọn MOSFET/IGBT và mạch Driver cách ly an toàn.', 'Kiểm tra dạng sóng xung PWM trên dao động ký (Oscilloscope).'])">
                     <div class="project-img-wrapper">
                         <img src="https://drive.google.com/thumbnail?id=1ArsorzOI4T2M637q-2F7LbLz1bQ300ju&sz=w800" alt="Mạch cầu H cứu hộ">
                         <span class="project-badge">H-Bridge Circuit</span>
@@ -335,8 +449,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 4: Test công suất ARD -->
-                <div class="project-card">
+                <!-- Dự án 4 -->
+                <div class="project-card" onclick="openModal('Thử Nghiệm & Test Tải Công Suất ARD', 'https://drive.google.com/thumbnail?id=1xttHimfXK1LaORDw8P1toIqi1GfBX8H5&sz=w800', 'Quy trình đo lường và kiểm thử thực tế bo mạch công suất bộ cứu hộ ARD trong phòng lab nhằm đảm bảo độ bền nhiệt và ổn định điện áp tải.', ['Sử dụng Multicomp Pro Oscilloscope và đầu dò vi sai (differential probe) đo dạng sóng.', 'Kiểm tra nhiệt độ linh kiện công suất dưới tải định mức.', 'Đo lường độ rợn sóng (ripple voltage) và hiệu suất nghịch lưu.'])">
                     <div class="project-img-wrapper">
                         <img src="https://drive.google.com/thumbnail?id=1xttHimfXK1LaORDw8P1toIqi1GfBX8H5&sz=w800" alt="Test công suất bộ cứu hộ">
                         <span class="project-badge">Testing & Debug</span>
@@ -352,8 +466,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 5: Camera AI & Touch Panel -->
-                <div class="project-card">
+                <!-- Dự án 5 -->
+                <div class="project-card" onclick="openModal('Màn Hình Cảm Ứng & Camera AI Thang Máy', 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', 'Phát triển phần cứng bo mạch giao diện màn hình cảm ứng gọi tầng sang trọng kết hợp hệ thống nhúng tích hợp AI giám sát an ninh cabin thang máy.', ['Thiết kế phần cứng giao tiếp truyền thông tốc độ cao với màn hình HMI.', 'Tích hợp module nhúng xử lý hình ảnh Camera AI nhận diện.', 'Tối ưu hóa nguồn nuôi và độ bền bo mạch hoạt động liên tục trong cabin.'])">
                     <div class="project-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Màn hình cảm ứng & Camera AI">
                         <span class="project-badge">Smart Elevator</span>
@@ -369,8 +483,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 6: Timer nuôi tôm tự động -->
-                <div class="project-card">
+                <!-- Dự án 6 -->
+                <div class="project-card" onclick="openModal('Timer Điều Khiển Thiết Bị Nuôi Tôm', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80', 'Thiết kế mạch điện tử công nghiệp chuyên dụng chống ẩm mốc, chống nhiễu điện từ cao, lập trình thời gian thực (RTC) điều khiển tự động quạt nước và máy cho ăn tại ao tôm.', ['Thiết kế mạch nguồn chống sét lan truyền và sụt áp biên độ rộng.', 'Lập trình vi điều khiển PIC/ESP quản lý lịch trình thời gian thực chính xác.', 'Bố trí vỏ hộp chống nước và chịu nhiệt độ ngoài trời khắc nghiệt.'])">
                     <div class="project-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Timer điều khiển nuôi tôm">
                         <span class="project-badge">AgriTech</span>
@@ -386,8 +500,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 7: Máy dò kim loại thực phẩm -->
-                <div class="project-card">
+                <!-- Dự án 7 -->
+                <div class="project-card" onclick="openModal('Bo Mạch Máy Dò Kim Loại Thực Phẩm', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80', 'Thiết kế bo mạch khuếch đại xử lý tín hiệu analog cực nhỏ (frontend signal conditioning) và bộ lọc nhiễu tần số cao cho dòng máy phát hiện tạp chất kim loại thực phẩm.', ['Thiết kế mạch lọc thông dải (Bandpass filter) loại bỏ nhiễu nền.', 'Tối ưu hóa đường mạch tín hiệu analog độ nhạy cao tránh nhiễu chéo.', 'Giao tiếp vi điều khiển hiển thị cảnh báo chính xác khi phát hiện kim loại.'])">
                     <div class="project-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Máy dò kim loại thực phẩm">
                         <span class="project-badge">Food Tech</span>
@@ -403,8 +517,8 @@
                     </div>
                 </div>
 
-                <!-- Dự án 8: Bộ điều khiển cổng thông minh -->
-                <div class="project-card">
+                <!-- Dự án 8 -->
+                <div class="project-card" onclick="openModal('Bộ Điều Khiển Cửa Cổng Thông Minh', 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80', 'Phát triển mạch điều khiển động cơ cổng tự động tích hợp sóng RF điều khiển từ xa và module Wi-Fi/Bluetooth (ESP) hỗ trợ điều khiển qua smartphone an toàn.', ['Tích hợp module ESP32/ESP8266 kết nối App điều khiển từ xa.', 'Thiết kế mạch bảo vệ quá dòng động cơ (motor overload protection).', 'Tích hợp mạch giải mã tín hiệu RF chống sao chép mã độc an toàn.'])">
                     <div class="project-img-wrapper">
                         <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=600&q=80" alt="Bộ điều khiển cửa cổng thông minh">
                         <span class="project-badge">Smart Home</span>
@@ -425,10 +539,50 @@
 
     </div>
 
+    <!-- Modal Popup Chi Tiết Dự Án -->
+    <div id="projectModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+            <img id="modalImg" class="modal-img" src="" alt="Project Image">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalDesc" class="modal-desc"></p>
+            <div class="modal-specs">
+                <h5>📌 Chi tiết kỹ thuật & Giải pháp thực hiện:</h5>
+                <ul id="modalList"></ul>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p><strong>VÕ VĂN HIẾU</strong> — Kỹ sư R&D Điện tử Viễn thông</p>
         <p>&copy; 2026 Intery JSC. All rights reserved.</p>
     </footer>
+
+    <script>
+        function openModal(title, imgSrc, desc, specs) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalDesc').innerText = desc;
+            
+            const listEl = document.getElementById('modalList');
+            listEl.innerHTML = '';
+            specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.innerText = spec;
+                listEl.appendChild(li);
+            });
+
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        function closeModal(event) {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        function closeModalDirect() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
