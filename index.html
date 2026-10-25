@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Võ Văn Hiếu - R&D Hardware & Embedded Engineer Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #f8fafc; }
+        header h2 { font-size: 1.25rem; color: #94a3b8; font-weight: 400; margin-bottom: 1.5rem; }
+        .contact-info { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.95rem; color: #cbd5e1; }
+        .container { max-width: 1100px; margin: -2rem auto 3rem auto; padding: 0 1.5rem; position: relative; }
+        section { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 2.5rem; margin-bottom: 2rem; border: 1px solid var(--border-color); }
+        section h3 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent-color); display: inline-block; }
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .about-item { background: #f1f5f9; padding: 1.25rem; border-radius: 8px; }
+        .about-item strong { color: var(--primary-color); display: block; margin-bottom: 0.25rem; }
+        .skills-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .chip { background: #eff6ff; color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem; border: 1px solid #bfdbfe; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .project-card { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: white; transition: transform 0.2s, box-shadow 0.2s; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .project-content { padding: 1.5rem; }
+        .project-card h4 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.75rem; }
+        .project-card p { font-size: 0.95rem; color: #475569; margin-bottom: 1rem; }
+        .tag-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tag { font-size: 0.75rem; background: #f1f5f9; color: #64748b; padding: 0.25rem 0.5rem; border-radius: 4px; }
+        footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem; border-top: 1px solid var(--border-color); background: white; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VÕ VĂN HIẾU</h1>
+        <h2>Kỹ sư R&D Điện tử Viễn thông</h2>
+        <div class="contact-info">
+            <span>📞 0399.478.771</span> | 
+            <span>✉️ vovanhieu2703@gmail.com</span> | 
+            <span>🏢 Công ty CP Intery (215E18 Nguyễn Văn Hưởng, P. An Khánh, TP.HCM)</span>
+        </div>
+    </header>
+    <div class="container">
+        <section>
+            <h3>Tổng Quan Bản Thân</h3>
+            <div class="about-grid">
+                <div class="about-item">
+                    <strong>Học Vấn</strong>
+                    Tốt nghiệp Cử nhân/Kỹ sư ngành Điện tử Viễn thông - Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE) năm 2023.
+                </div>
+                <div class="about-item">
+                    <strong>Vị Trí Hiện Tại</strong>
+                    Kỹ sư R&D tại Công ty Cổ phần Intery. Chuyên thiết kế phần cứng mạch điện tử và lập trình vi điều khiển ứng dụng thực tế.
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Kỹ Năng Chuyên Môn</h3>
+            <div class="skills-chips">
+                <span class="chip">Altium Designer (Schematic & PCB Layout)</span>
+                <span class="chip">Thiết kế Nguồn Công suất (SMPS / Inverter / Cầu H)</span>
+                <span class="chip">Vi điều khiển PIC</span>
+                <span class="chip">Vi điều khiển ESP (ESP32/ESP8266)</span>
+                <span class="chip">Ngôn ngữ C cơ bản</span>
+                <span class="chip">Đo lường & Debug phần cứng (Oscilloscope, LCR Meter)</span>
+            </div>
+        </section>
+        <section>
+            <h3>Dự Án Tiêu Biểu & Thực Tế</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Bộ Điện Thoại Liên Lạc Khẩn Cấp Thang Máy</h4>
+                        <p>Thiết kế phần cứng và firmware hệ thống intercom gọi khẩn cấp đa điểm, chống nhiễu tốt trong môi trường giếng thang khắc nghiệt.</p>
+                        <div class="tag-group"><span class="tag">Altium Designer</span><span class="tag">PIC Microcontroller</span><span class="tag">Audio Circuit</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Bộ Cứu Hộ Tự Động Thang Máy (ARD)</h4>
+                        <p>Thiết kế mạch nguồn công suất lớn, mạch cầu H điều khiển nghịch lưu, kiểm tra và test công suất tải thực tế đưa cabin về tầng gần nhất khi mất điện lưới.</p>
+                        <div class="tag-group"><span class="tag">Power Electronics</span><span class="tag">H-Bridge</span><span class="tag">Inverter</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Màn Hình Cảm Ứng & Camera AI Giám Sát Thang Máy</h4>
+                        <p>Phát triển phần cứng giao diện màn hình cảm ứng gọi tầng sang trọng và tích hợp hệ thống nhúng kết hợp AI giám sát an ninh cabin thang máy.</p>
+                        <div class="tag-group"><span class="tag">HMI Touch Panel</span><span class="tag">Embedded Systems</span><span class="tag">AI Integration</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Timer Điều Khiển Thiết Bị Nuôi Tôm Tự Động</h4>
+                        <p>Thiết kế mạch điện tử công nghiệp chống ẩm, chống nhiễu cao, lập trình thời gian thực điều khiển hệ thống quạt nước, máy cho ăn tự động ngoài trời.</p>
+                        <div class="tag-group"><span class="tag">Industrial Design</span><span class="tag">RTC / Timer</span><span class="tag">Embedded C</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Mạch Máy Dò Kim Loại Thực Phẩm</h4>
+                        <p>Thiết kế bo mạch xử lý tín hiệu analog yếu, bộ lọc nhiễu tần số cao, giao tiếp vi điều khiển hiển thị thông số kiểm tra tạp chất trên dây chuyền chế biến.</p>
+                        <div class="tag-group"><span class="tag">Analog Frontend</span><span class="tag">Signal Filtering</span><span class="tag">Display Board</span></div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h4>Bộ Điều Khiển Cửa Cổng Thông Minh</h4>
+                        <p>Thiết kế bo mạch chủ tích hợp module không dây (ESP/RF), giải mã lệnh điều khiển từ xa, tích hợp mạch bảo vệ quá dòng/quá áp động cơ cổng tự động.</p>
+                        <div class="tag-group"><span class="tag">ESP Series</span><span class="tag">Wireless Control</span><span class="tag">Motor Protection</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2026 Võ Văn Hiếu. All rights reserved. R&D Portfolio - Intery JSC.</p>
+    </footer>
+</body>
+</html>
